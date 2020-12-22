@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+    <head><title>FrontEnd_Test</title>
+        <link rel="stylesheet" href="FE_test.css"></link>
+    </head>
+<body style="position: relative; min-height: 100%; top: 0px;overflow-x: hidden;">
+    <div class="top-section">
+        <i class="logo2"></i>
+        <i class="icon-search"></i>
+        <i class="icon-person"></i>
+        <div class="search_Txt">Search Any Email Address</div>
+        <div class="search_desc"><span style="color:#F6BC25">Start Here</span> - Look up the owner's name, photos and online profiles. See what you find!</div>    
+        <input type="text" class="txt_box" placeholder="EMAIL"/>
+        <input class="btn" type="button" value="GO!"></input>
+        <i class="icon-lock"></i><span class="notif">Enter Any Email Address. They won't be notified.</span>
+    </div>
+    <div class="bottom-section">
+            <div class="reverse">Reverse Email Lookup</div>
+            <div class="rev_desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+            <div style="float:left;margin-top: 130px;">
+                <div class="number"><span style="vertical-align: -webkit-baseline-middle;">1</span></div>
+                <div class="numbertext">
+                    <div class="number_head">Lorem Ipsum</div>
+                    <div class="number_desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                </div>
+                <div class="number"><span style="vertical-align: -webkit-baseline-middle;">2</span></div>
+                <div class="numbertext">
+                    <div class="number_head">Lorem Ipsum</div>
+                    <div class="number_desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                </div>
+                <div class="number"><span style="vertical-align: -webkit-baseline-middle;">3</span></div>
+                <div class="numbertext">
+                    <div class="number_head">Lorem Ipsum</div>
+                    <div class="number_desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                </div>
+            </div>
+            <div style="float:left;margin-top: 130px;">
+                <div class="number"><span style="vertical-align: -webkit-baseline-middle;">4</span></div>
+                <div class="numbertext">
+                    <div class="number_head">Lorem Ipsum</div>
+                    <div class="number_desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                </div>
+                <div class="number"><span style="vertical-align: -webkit-baseline-middle;">5</span></div>
+                <div class="numbertext">
+                    <div class="number_head">Lorem Ipsum</div>
+                    <div class="number_desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                </div>
+                <div class="number"><span style="vertical-align: -webkit-baseline-middle;">6</span></div>
+                <div class="numbertext">
+                    <div class="number_head">Lorem Ipsum</div>
+                    <div class="number_desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                </div>
+            </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        var em='';
+        $('.btn').on("click",function(){
+             em = $('.txt_box').val();
+                // email validation
+                if(IsEmail(em)){
+                    if( $('.txt_box').hasClass('email-err') ){
+                        $('.txt_box').removeClass('email-err');
+                    }
+                    // store the data fetched 
+                    localStorage.setItem("em",em);
+                } 
+                else{
+                    $('.txt_box').addClass('email-err').after("<div style='width: 218px;position: absolute;top: 288px;left: 200px;height: 20px;background-color: red;padding-left: 10px;color:#ffffff;border-radius: 0px 0px 4px 4px;'>Please add a valid email address</div>")
+                } 
+        });
+        $(':button').click(function(){
+            if(IsEmail(em)){
+                location.href=location.href.replace('FE_test','FE_pg2');
+            }
+        })
+        function IsEmail(email) {
+        var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        if(!regex.test(email)) {
+            return false;
+        }else{
+            return true;
+        }
+        }
+    });
+    </script>
+</body>
+</html>
