@@ -2,67 +2,87 @@
 <html>
 <head><link rel="stylesheet" href="FE_test.css"></link></stylesheet>
 </head>
-<body style="overflow-x:hidden;background-color:#F8F8F8;">
+<body style="overflow-x:hidden;position:relative;height: 1174px;background-color:#F8F8F8;margin: 0px;">
     <div class="top-section-2">
         <i class="logo2"></i>
         <i class="icon-search"></i>
         <i class="icon-person"></i>
     </div>
     <div class="bottom-section">
-        <div class="spin"><img class="spinner" src="../coding_test/FrontEnd-Test_LP_specs2020/FrontEndJr-Test_LP_specs2020/assets/loading_spinner.gif"/></div>
-        <div class="record_data">Please wait a moment...</div>
+        <div class="record-num"></div>
+        <div class="spin"><img class="spinner" src="../FrontEnd-Test_LP_specs2020/FrontEndJr-Test_LP_specs2020/assets/loading_spinner.gif"/></div>
+        <div class="record_data wait_txt">Please wait a moment...</div>
     </div>
     <div class="search-section">
-        <div class="search_Txt">Can't Find The Right Person?</div>
-        <div class="search_desc"><span style="color:#F6BC25">Try Again</span> - Make a new search</div>    
+        <div class="search_Txt res_txt">Can't Find The Right Person?</div>
+        <div class="search_desc2"><span style="color:#F6BC25">Try Again</span> - Make a new search</div>    
         <input type="text" class="txt_box" placeholder="EMAIL"/>
         <input class="btn" type="button" value="GO!"></input>
         <i class="icon-lock"></i><span class="notif">Enter Any Email Address. They won't be notified.</span>
     </div>
-    <div class="footer_FE">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+    <div class="footer_FE footer_pg2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<span class="terms">Terms | Privacy</span></div>
+    <div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="../sumanp14.github.io/FrontEnd-Test_LP_specs2020/FrontEndJr-Test_LP_specs2020/assets/JS/search.js"></script>
 <script>
-    //Fetch data from API
-$.ajax({
-                    url:'https://ltv-data-api.herokuapp.com/api/v1/records.json?email='+localStorage.getItem("em"),
-                    // present a loading spinner while the result is being fetched
-                    beforeSend:function(){
-                        $('.spinner').show();
-                        $('.record_data').show()
-                    },
-                    success:function(data){
-                        $('.spinner').hide();
-                        if(data.length>0 && em=="jonsmith@example.com"||em=="janesmith@example.com"||
+$(document).ready(function(){
+    search_email();
+
+    //jsonpCallback
+    function getData(json){
+    var em=localStorage.getItem("em");
+    $('.spin').hide();
+    $('.wait_txt').hide();
+    var data=json.Message;
+    //var data=({"email":"doesmith@example.com","first_name":"Dow","last_name":"Smith","description":"Lorem Ipsum Dolor","address":"123 Chocolate Ave","phone_numbers":["2125551234","2125551235","2125551236"],"relatives":["Jane Smith","Jon Smith"]});
+            if(data!==undefined || data.length>0 && em=="jonsmith@example.com"||em=="janesmith@example.com"||
             em=="doesmith@example.com"){
-                        var relhtml='',phnhtml='';
-                        data[0].relatives.forEach(function(v,i){
-                            relhtml+='<p>'+ v +'</p>'
-                        })
-                        data[0].phone_numbers.forEach(function(v,i){
-                            phnhtml+='<p>'+ v +'</p>'
-                        })
-                        // present the second page per the spec with the data provided.
-                                $('.record-num').html("<span>1 Result</span>")
-                                $('.record_data').text('Look at the result below to see the details of the person you’re searched for.')
-                                var rec_detail='<div style="border: 1px solid gray;border-radius:10px;">'+
-                                '<div style="color:blue;float:left;">1</div><div>'+ data[0].first_name +' '+ data[0].last_name +
-                                '</div><div>'+ data[0].description +'</div><div><div style="float:left;"><h2>Address</h2><p class="">'+ data[0].address +
-                                '</p><h3>Email</h3>'+ phnhtml +
-                                '<h3>Relatives</h3>'+ relhtml +'</div></div/div>'                                
+                                var relhtml='',phnhtml='';
+                                data.relatives.forEach(function(v,i){
+                                    relhtml+='<p>'+ v +'</p>'
+                                })
+                                data.phone_numbers.forEach(function(v,i){
+                                    phnhtml+='<p style="margin-bottom: -12px;">'+ v +'</p>'
+                                })
+                                // present the second page per the spec with the data provided.
+                                $('.record-num').html("<span>1 Result</span>");
+                                $('.record_data').addClass('res_found').text('Look at the result below to see the details of the person you’re searched for.')
+                                var rec_detail='<div class="box-res-found">'+'<div class="person"><span style="vertical-align: -webkit-baseline-middle;"><i class="icon-person-res"></i></span></div>'+
+                                '<div class="name_found">'+ data.first_name +' '+ data.last_name +
+                                '</div><div class="name_data_found">'+ data.description +'</div><div><div style="float:left;margin-left:118px;"><span class="addr-res">Address</span><br/><span class="data_found">'+ data.address +
+                                '</span><br/><span class="addr-res">Email</span><br/><span class="data_found email-found">'+ data.email + '</span><br/><div style="float:left;margin-left:375px;margin-top: -189px;"><span class="addr-res">Phone Numbers</span><br/><span class="data_found ph_num">'+ phnhtml +
+                                '</span><span class="addr-res">Relatives</span>'+ relhtml +'</div></div></div></div>'                                
                                 $('.bottom-section').append(rec_detail);
-                                $('.search-section').show();
+                                $('.search-section').addClass("search-res-found").show();
                         }
                         // No record found
                         else{
-                                localStorage.setItem("em",data);
-                                localStorage.getItem("em");
-                                $('.spinner').hide();
-                                $('.record_data').html("<div class='result_zero'>0 Results</div><div style='font-size:24px;color:#000000;'>Try starting a new search below");
+                                localStorage.setItem("em",[]);
+                                //localStorage.getItem("em");
+                                $('.bottom-section').addClass('bsec_pg2');
+                                $('.record_data').html("<div class='result_zero'>0 Results</div><div style='position: relative;top: -103px;left: -10px;font-size:24px;color:#000000;'>Try starting a new search below");
                                 $('.search-section').show();    
                                 $('.txt_box').focus();
                         }
-                    }  
-                }); 
+                    
+                    }
+    //Fetch data from API
+    $.ajax({
+                    url:'https://ltv-data-api.herokuapp.com/api/v1/records.json?email='+localStorage.getItem("em")+'&callback=getData',
+                    // present a loading spinner while the result is being fetched
+                    beforeSend:function(){
+                        $('.spinner').addClass('spinner-pg2');
+                        $('.spin').show();
+                        $('.record_data').show();
+                    },
+                    type:'POST'
+                    
+                    //success:function(data){
+                      //  $('.spinner').hide();
+                    //} 
+    });
+})
+                
 </script>
 </body>
 </html>

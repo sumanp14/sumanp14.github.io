@@ -1,8 +1,10 @@
 .top-section{
-position: relative;
-width:100%;
-min-height:400px;
-background-color:#004A80;
+    position: relative;
+    width: 100%;
+    min-height: 400px;
+    /* left: 8px; */
+    /* top: -7px; */
+    background-color: #004A80;;
 }
 .top-section-2{
     position: relative;
@@ -17,31 +19,36 @@ background-color:#004A80;
     min-height: 400px;
     background-color: #004A80;
 }
+.search-res-found{
+    top:170px;
+}
 .footer_FE{
     background-color: #FFFFFF;
     color:#999999;
-    height: 55px;
+    height: 28px;
     padding-top: 15px;
     padding-left: 150px;
     padding-right: 150px;
+    padding-bottom: 5px;
     font-size: 15px;
     position: absolute;
     bottom: 0px;
 }
-.spinner,.search-section,.record_data,.record_details{display:none;}
+.footer_pg2{
+    padding-bottom: 18px;
+}
+.terms{position:absolute;left: 1145px;top: 27px;width:103px;height:17px;font-size:14px;color:#004A80;}
+.spin,.search-section,.record_data,.record_details{display:none;}
 .spinner{width: 150px;left:340px; position: absolute;top:100px;}
-.record_data{font-weight:bold;font-size:24px;color:#004A80;position:relative;top: 260px;
-    left: 310px;}
-.icon-search{
-width:46px;
-height:46px;
-top:20px;
-left:1142px;
-position: absolute;
-background-image: url("../coding_test/FrontEnd-Test_LP_specs2020/FrontEndJr-Test_LP_specs2020/assets/PNGs/icn_search@2x.png");
+.spinner-pg2{left: 421px;position: absolute;top: 160px;}
+.record_data{font-weight:bold;font-size:24px;color:#004A80;position:relative;top: 260px;left: 310px;}
+.icon-search{width:46px;height:46px;top:20px;left:1142px;position: absolute;background-image: url("../FrontEnd-Test_LP_specs2020/FrontEndJr-Test_LP_specs2020/assets/PNGs/icn_search@2x.png");
 }
 .btn{
-    font-size:24px;position:absolute;color:#004A80;background-color:#F6BC25;top:230px;left:880px;width:180px;height:57px;border-radius:10px;
+    text-decoration:none;font-size:24px;position:absolute;color:#004A80;background-color:#F6BC25;top:230px;left:880px;width:180px;height:57px;border-radius:10px;
+}
+.btn:hover{
+    background-color: #F2DA56;
 }
 .icon-person{
     position: absolute;
@@ -49,7 +56,15 @@ background-image: url("../coding_test/FrontEnd-Test_LP_specs2020/FrontEndJr-Test
     height:46px;
     top:20px;
     left:1190px;
-    background-image: url("../coding_test/FrontEnd-Test_LP_specs2020/FrontEndJr-Test_LP_specs2020/assets/PNGs/icn_person@2x.png");    
+    background-image: url("../FrontEnd-Test_LP_specs2020/FrontEndJr-Test_LP_specs2020/assets/PNGs/icn_person@2x.png");    
+}
+.icon-person-res{
+    position: absolute;
+    width:40px;
+    height:46px;
+    top: 129px;
+    left: 60px;
+    background-image: url("../FrontEnd-Test_LP_specs2020/FrontEndJr-Test_LP_specs2020/assets/PNGs/icn_person@2x.png");    
 }
 .icon-lock{
     position: absolute;
@@ -57,12 +72,12 @@ background-image: url("../coding_test/FrontEnd-Test_LP_specs2020/FrontEndJr-Test
     height:38px;
     top:330px;
     left:200px;
-    background-image: url("../coding_test/FrontEnd-Test_LP_specs2020/FrontEndJr-Test_LP_specs2020/assets/PNGs/lock@2x.png");    
+    background-image: url("../FrontEnd-Test_LP_specs2020/FrontEndJr-Test_LP_specs2020/assets/PNGs/lock@2x.png");    
 }
 .rev_desc{
     position:absolute;
     font-size:22px;
-    width:753px;
+    width: 825px;
     height:90px;
     top:25px;
     left:25px;
@@ -72,9 +87,15 @@ background-image: url("../coding_test/FrontEnd-Test_LP_specs2020/FrontEndJr-Test
 .bottom-section{
     position:relative;
     top:100px;
-    left:230px;
+    left:167px;
+    /* background-image: linear-gradient( #FFFFFF,#E6E6E6); */
+    /* height:756px; */
 }
-.number{
+.bsec_pg2{
+    height: 300px;
+    top: 0px;
+}
+.number,.person{
     color:#F6BC25;
     text-align: center;
     background-color:#004A80; 
@@ -84,6 +105,9 @@ background-image: url("../coding_test/FrontEnd-Test_LP_specs2020/FrontEndJr-Test
     border-radius:100px;
     font-size:48px;
     margin-top:5px;
+}
+.person{
+    float:left;
 }
 .number_head{
     color:#004A80;
@@ -102,6 +126,7 @@ background-image: url("../coding_test/FrontEnd-Test_LP_specs2020/FrontEndJr-Test
     }
 .email-err{
     border: 3px solid red !important;
+    border-radius:3px 3px 3px 0px !important;
 }
 .notif{
     position: absolute;
@@ -122,7 +147,7 @@ background-image: url("../coding_test/FrontEnd-Test_LP_specs2020/FrontEndJr-Test
     width:980px;
     height:70px;
     top: -55px;
-    left: 4px;
+    left: 77px;
     margin:0px auto;
     padding-left:124px;
     color:#004A80;
@@ -139,10 +164,32 @@ background-image: url("../coding_test/FrontEnd-Test_LP_specs2020/FrontEndJr-Test
     font-family: Helvetica Neue;
     color: #ffffff;
 }
+.res_txt{
+    left: 213px;
+}
+.record-num{
+    font-size:52px;
+    font-weight:bold;
+    color:#004A80;
+    position: absolute;
+    top: -65px;
+    left: 374px;
+}
+.search_desc2{
+    position: absolute;
+    top:172px;
+    left:239px;
+    width:863px;
+    height:29px;
+    font-size: 24px;
+    font-family: Helvetica Neue;
+    color:#ffffff;
+    padding-left: 207px;
+}
 .search_desc{
     position: absolute;
     top:172px;
-    left:230px;
+    left:8px;
     width:863px;
     height:29px;
     font-size: 24px;
@@ -158,19 +205,92 @@ background-image: url("../coding_test/FrontEnd-Test_LP_specs2020/FrontEndJr-Test
     position: absolute;
     background-size: 100%;
     background-color: #004A80;
-    background-image: url("../coding_test/FrontEnd-Test_LP_specs2020/FrontEndJr-Test_LP_specs2020/assets/PNGs/Logo@2x.png");
+    background-image: url("../FrontEnd-Test_LP_specs2020/FrontEndJr-Test_LP_specs2020/assets/PNGs/Logo@2x.png");
 }
 .txt_box{
-position: absolute;
-top: 230px;
-left: 200px;
-height: 50px;
-width: 660px;
-border-radius: 5px;
-border: none;
+    position: absolute;
+    top: 230px;
+    left: 200px;
+    padding-left: 10px;
+    height: 50px;
+    width: 660px;
+    border-radius: 5px;
+    border: none;
 }
 .result_zero{
     font-size: 52px;
+    position: relative;
+    bottom: 314px;
+    left: 44px;
+    top: -114px;
+}
+.valid-msg{
+    font-size: 16px;
+    width: 218px;
     position: absolute;
-    bottom:500px;
+    top: 288px;
+    left: 200px;
+    height: 20px;
+    background-color: red;
+    padding-left: 10px;
+    color:#ffffff;
+    border-radius: 0px 0px 4px 4px;
+}
+.res_found{
+    font-weight: 100;
+    font-size: 24px;
+    font-family: Helvetica Neue;
+    top: 9px;
+    color: #000000;
+    left: 106px;
+}
+.box-res-found{
+    border-radius: 10px;
+    background-color: #ffffff;
+    width: 909px;
+    height: 378px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.19), 0 4px 4px 0 rgba(0, 0, 0, 0.19);
+    margin-top: 40px;
+    padding-left: 31px;
+    padding-top: 31px;
+}
+.name_data_found{
+    font-size: 18px;
+    width:770px;
+    height:52px;
+    margin-left: 120px;
+    margin-top: 10px;
+}
+
+.name_found{
+    margin-top: 15px;
+    margin-left: 118px;
+    font-size: 32px;
+    font-weight:bold;
+    width:226px;
+    height:38px;
+    color:#004A80;
+}
+.addr-res{
+    font-size: 22px;
+    color: #004A80;
+    font-weight: bold;
+}
+.data_found{
+    display: inline-block;
+    margin-top:15px;
+    width: 360px;
+    height: 78px; 
+}
+.email-found{
+    height: 26px;
+}
+.ph_num{
+    margin-top: 0px;
+    margin-bottom: 15px;
+    color: #004A80;
+}
+.wait_txt{
+    top: 324px;
+    left: 382px;
 }
