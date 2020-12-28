@@ -12,7 +12,7 @@ function search_email(){
              em = th.val();
                 // email validation
                 if(IsEmail(em)){
-                    location.href=location.href.replace('index','FE_pg2');
+                    location.href='https://sumanp14.github.io/FE_pg2.html';
                     if( th.hasClass('email-err') ){
                         th.removeClass('email-err').next('.valid-msg').remove();
                     }
