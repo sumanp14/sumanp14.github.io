@@ -29,14 +29,61 @@ $(document).ready(function(){
     search_email();
 
     //jsonpCallback
-    function getData(json){
-    var em=localStorage.getItem("em");
-    $('.spin').hide();
-    $('.wait_txt').hide();
-    var data=json.Message;
-    //var data=({"email":"doesmith@example.com","first_name":"Dow","last_name":"Smith","description":"Lorem Ipsum Dolor","address":"123 Chocolate Ave","phone_numbers":["2125551234","2125551235","2125551236"],"relatives":["Jane Smith","Jon Smith"]});
-            if(data!==undefined || data.length>0 && em=="jonsmith@example.com"||em=="janesmith@example.com"||
-            em=="doesmith@example.com"){
+    //function getData(json){
+    // var em=localStorage.getItem("em");
+    // $('.spin').hide();
+    // $('.wait_txt').hide();
+    // var data=json.Message;
+    // //var data=({"email":"doesmith@example.com","first_name":"Dow","last_name":"Smith","description":"Lorem Ipsum Dolor","address":"123 Chocolate Ave","phone_numbers":["2125551234","2125551235","2125551236"],"relatives":["Jane Smith","Jon Smith"]});
+    //         if(data!==undefined || data.length>0 && em=="jonsmith@example.com"||em=="janesmith@example.com"||
+    //         em=="doesmith@example.com"){
+    //                             var relhtml='',phnhtml='';
+    //                             data.relatives.forEach(function(v,i){
+    //                                 relhtml+='<p>'+ v +'</p>'
+    //                             })
+    //                             data.phone_numbers.forEach(function(v,i){
+    //                                 phnhtml+='<p style="margin-bottom: -12px;">'+ v +'</p>'
+    //                             })
+    //                             // present the second page per the spec with the data provided.
+    //                             $('.record-num').html("<span>1 Result</span>");
+    //                             $('.record_data').addClass('res_found').text('Look at the result below to see the details of the person you’re searched for.')
+    //                             var rec_detail='<div class="box-res-found">'+'<div class="person"><span style="vertical-align: -webkit-baseline-middle;"><i class="icon-person-res"></i></span></div>'+
+    //                             '<div class="name_found">'+ data.first_name +' '+ data.last_name +
+    //                             '</div><div class="name_data_found">'+ data.description +'</div><div><div style="float:left;margin-left:118px;"><span class="addr-res">Address</span><br/><span class="data_found">'+ data.address +
+    //                             '</span><br/><span class="addr-res">Email</span><br/><span class="data_found email-found">'+ data.email + '</span><br/><div style="float:left;margin-left:375px;margin-top: -189px;"><span class="addr-res">Phone Numbers</span><br/><span class="data_found ph_num">'+ phnhtml +
+    //                             '</span><span class="addr-res">Relatives</span>'+ relhtml +'</div></div></div></div>'                                
+    //                             $('.bottom-section').append(rec_detail);
+    //                             $('.search-section').addClass("search-res-found").show();
+    //                     }
+    //                     // No record found
+    //                     else{
+    //                             localStorage.setItem("em",[]);
+    //                             //localStorage.getItem("em");
+    //                             $('.bottom-section').addClass('bsec_pg2');
+    //                             $('.record_data').html("<div class='result_zero'>0 Results</div><div style='position: relative;top: -103px;left: -10px;font-size:24px;color:#000000;'>Try starting a new search below");
+    //                             $('.search-section').show();    
+    //                             $('.txt_box').focus();
+    //                     }
+                    
+    //                 }
+    //Fetch data from API
+    $.ajax({
+                    url:'https://ltv-data-api.herokuapp.com/api/v1/records.json?email='+localStorage.getItem("em"),
+                    // present a loading spinner while the result is being fetched
+                    beforeSend:function(){
+                        $('.spinner').addClass('spinner-pg2');
+                        $('.spin').show();
+                        $('.record_data').show();
+                    },
+                    type:'GET',
+                    success:function(data){
+                        var em=localStorage.getItem("em");
+                                $('.spin').hide();
+                                $('.wait_txt').hide();
+                                // var data=json.Message;
+                                //var data=({"email":"doesmith@example.com","first_name":"Dow","last_name":"Smith","description":"Lorem Ipsum Dolor","address":"123 Chocolate Ave","phone_numbers":["2125551234","2125551235","2125551236"],"relatives":["Jane Smith","Jon Smith"]});
+                                        if(data!==undefined || data.length>0 && em=="jonsmith@example.com"||em=="janesmith@example.com"||
+                                        em=="doesmith@example.com"){
                                 var relhtml='',phnhtml='';
                                 data.relatives.forEach(function(v,i){
                                     relhtml+='<p>'+ v +'</p>'
@@ -66,16 +113,8 @@ $(document).ready(function(){
                         }
                     
                     }
-    //Fetch data from API
-    $.ajax({
-                    url:'https://ltv-data-api.herokuapp.com/api/v1/records.json?email='+localStorage.getItem("em")+'&callback=getData',
-                    // present a loading spinner while the result is being fetched
-                    beforeSend:function(){
-                        $('.spinner').addClass('spinner-pg2');
-                        $('.spin').show();
-                        $('.record_data').show();
-                    },
-                    type:'POST'
+                }
+                    
                     
                     //success:function(data){
                       //  $('.spinner').hide();
