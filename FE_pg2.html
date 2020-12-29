@@ -29,7 +29,7 @@ $(document).ready(function(){
     search_email();
 
     //jsonpCallback
-    function getData(json){
+    function getData(json1){
     var em=localStorage.getItem("em");
     $('.spin').hide();
     $('.wait_txt').hide();
@@ -68,7 +68,7 @@ $(document).ready(function(){
 
     //Fetch data from API
     $.ajax({
-                    url:'https://ltv-data-api.herokuapp.com/api/v1/records.json?email='+localStorage.getItem("em")+'&callback=?',
+                    url:'https://ltv-data-api.herokuapp.com/api/v1/records.json?email='+localStorage.getItem("em"),
                     // present a loading spinner while the result is being fetched
                     beforeSend:function(){
                         $('.spinner').addClass('spinner-pg2');
@@ -76,8 +76,10 @@ $(document).ready(function(){
                         $('.record_data').show();
                     },
                     type:'GET',              
-                    dataType:'jsonp',
-                    jsonpCallback:'getData',
+                    dataType:'json',
+                    success:function(data):{
+                    getData(data);
+                    },
                     crossDomain:true
 
     });
