@@ -64,8 +64,8 @@ $(document).ready(function(){
                                 $('.search-section').show();    
                                 $('.txt_box').focus();
                         }
-                    
                     }
+
     //Fetch data from API
     $.ajax({
                     url:'https://ltv-data-api.herokuapp.com/api/v1/records.json?email='+localStorage.getItem("em")+'&callback=?',
@@ -79,9 +79,7 @@ $(document).ready(function(){
                     dataType:'jsonp',
                     jsonpCallback:'getData',
                     crossDomain:true
-                    //success:function(data){
-                      //  $('.spinner').hide();
-                    //} 
+
     });
 })
                 
