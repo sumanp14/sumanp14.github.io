@@ -35,7 +35,7 @@ $(document).ready(function(){
     $('.wait_txt').hide();
     var data=json1;
     //var data=({"email":"doesmith@example.com","first_name":"Dow","last_name":"Smith","description":"Lorem Ipsum Dolor","address":"123 Chocolate Ave","phone_numbers":["2125551234","2125551235","2125551236"],"relatives":["Jane Smith","Jon Smith"]});
-            if(data!==undefined || data.length>0 && em=="jonsmith@example.com"||em=="janesmith@example.com"||
+            if(data!==undefined || data.length!==0 && em=="jonsmith@example.com"||em=="janesmith@example.com"||
             em=="doesmith@example.com"){
                                 var relhtml='',phnhtml='';
                                 data.relatives.forEach(function(v,i){
