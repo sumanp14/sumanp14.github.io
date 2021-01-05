@@ -77,11 +77,11 @@ $(document).ready(function(){
                     },
                     type:'GET',              
                     dataType:'jsonp',
-                    crossDomain=true,
+                    jsonpCallback:'getData',
+                    crossDomain:true,
                     success:function(data){
                     getData(data);
-                    },
-                    crossDomain:true
+                    }
 
     });
 })
