@@ -68,7 +68,7 @@ $(document).ready(function(){
 
     //Fetch data from API
     $.ajax({
-                    url:'https://ltv-data-api.herokuapp.com/api/v1/records.json?email='+localStorage.getItem("em")+'&callback=?',
+                    url:'https://ltv-data-api.herokuapp.com/api/v1/records.json?email='+localStorage.getItem("em"),
                     // present a loading spinner while the result is being fetched
                     beforeSend:function(){
                         $('.spinner').addClass('spinner-pg2');
@@ -76,7 +76,7 @@ $(document).ready(function(){
                         $('.record_data').show();
                     },
                     type:'GET',              
-                    dataType:'jsonp',
+                    dataType:'json',
                     jsonpCallback:'getData',
                     crossDomain:true,
                     success:function(data){
