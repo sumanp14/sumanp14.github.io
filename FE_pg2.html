@@ -2,7 +2,7 @@
 <html>
 <head><link rel="stylesheet" href="FE_test.css"></link></stylesheet>
 </head>
-<body style="overflow-x:hidden;position:relative;height: 1174px;background-color:#F8F8F8;margin: 0px;">
+<body style="overflow-x:hidden;position:relative;height: 1131px;background-color:#F8F8F8;margin: 0px;">
     <div class="top-section-2">
         <i class="logo2"></i>
         <i class="icon-search"></i>
@@ -27,15 +27,12 @@
 <script>
 $(document).ready(function(){
     search_email();
-
-    //jsonpCallback
     function getData(json1){
     var em=localStorage.getItem("em");
     $('.spin').hide();
     $('.wait_txt').hide();
     var data=json1;
-    //var data=({"email":"doesmith@example.com","first_name":"Dow","last_name":"Smith","description":"Lorem Ipsum Dolor","address":"123 Chocolate Ave","phone_numbers":["2125551234","2125551235","2125551236"],"relatives":["Jane Smith","Jon Smith"]});
-            if(data.length!==0 && em=="jonsmith@example.com"||em=="janesmith@example.com"||
+            if(data.length>0 && em=="jonsmith@example.com"||em=="janesmith@example.com"||
             em=="doesmith@example.com"){
                                 var relhtml='',phnhtml='';
                                 data.relatives.forEach(function(v,i){
@@ -46,7 +43,7 @@ $(document).ready(function(){
                                 })
                                 // present the second page per the spec with the data provided.
                                 $('.record-num').html("<span>1 Result</span>");
-                                $('.record_data').addClass('res_found').text('Look at the result below to see the details of the person you’re searched for.')
+                                $('.record_data').addClass('res_found one_res').css('display','block').text('Look at the result below to see the details of the person you’re searched for.')
                                 var rec_detail='<div class="box-res-found">'+'<div class="person"><span style="vertical-align: -webkit-baseline-middle;"><i class="icon-person-res"></i></span></div>'+
                                 '<div class="name_found">'+ data.first_name +' '+ data.last_name +
                                 '</div><div class="name_data_found">'+ data.description +'</div><div><div style="float:left;margin-left:118px;"><span class="addr-res">Address</span><br/><span class="data_found">'+ data.address +
@@ -60,12 +57,12 @@ $(document).ready(function(){
                                 localStorage.setItem("em",[]);
                                 //localStorage.getItem("em");
                                 $('.bottom-section').addClass('bsec_pg2');
-                                $('.record_data').html("<div class='result_zero'>0 Results</div><div style='position: relative;top: -103px;left: -10px;font-size:24px;color:#000000;'>Try starting a new search below");
+                                $('.record_data').html("<div class='result_zero'>0 Results</div><div style='position: relative;top: -319px;left: -39px;font-weight: normal;font-size:24px;color:#000000;'>Try starting a new search below").show();
                                 $('.search-section').show();    
                                 $('.txt_box').focus();
                         }
+                    
                     }
-
     //Fetch data from API
     $.ajax({
                     url:'https://ltv-data-api.herokuapp.com/api/v1/records.json?email='+localStorage.getItem("em"),
@@ -77,12 +74,12 @@ $(document).ready(function(){
                     },
                     type:'GET',              
                     dataType:'json',
-                    jsonpCallback:'getData',
+                    // jsonpCallback:'getData',
                     crossDomain:true,
                     success:function(data){
-                    getData(data);
-                    }
+                         getData(data);
 
+                    } 
     });
 })
                 
